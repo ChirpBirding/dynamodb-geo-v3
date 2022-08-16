@@ -14,6 +14,7 @@
   "author": "René Schubert <reneschubert@gmx.de>",
   "license": "Apache-2.0",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.150.0",
     "@types/long": ">=3",
     "nodes2ts": "^2.0.0"
   },
@@ -24,8 +25,5 @@
     "mocha": "^3.3.0",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
-  },
-  "peerDependencies": {
-    "@aws-sdk/client-dynamodb": "^3.34.0"
   }
 }
