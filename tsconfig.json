@@ -5,7 +5,8 @@
     "noImplicitAny": false,
     "sourceMap": false,
     "outDir": "dist",
-    "lib": ["es2019"]
+    "lib": ["es2019", "dom"],
+    "types": ["node"]
   },
   "include": ["src/**/*"]
 }
