@@ -103,7 +103,8 @@ export class DynamoDBManager {
     const geohash = S2Manager.generateGeohash(getPointInput.GeoPoint);
     const hashKey = S2Manager.generateHashKey(
       geohash,
-      this.config.hashKeyLength
+      this.config.hashKeyLength,
+      this.config.geohashUnsignedLongs
     );
 
     const getItemInput = getPointInput.GetItemInput;
@@ -121,7 +122,8 @@ export class DynamoDBManager {
     const geohash = S2Manager.generateGeohash(putPointInput.GeoPoint);
     const hashKey = S2Manager.generateHashKey(
       geohash,
-      this.config.hashKeyLength
+      this.config.hashKeyLength,
+      this.config.geohashUnsignedLongs
     );
     const putItemInput: PutItemInput = {
       ...putPointInput.PutItemInput,
@@ -155,7 +157,8 @@ export class DynamoDBManager {
       const geohash = S2Manager.generateGeohash(putPointInput.GeoPoint);
       const hashKey = S2Manager.generateHashKey(
         geohash,
-        this.config.hashKeyLength
+        this.config.hashKeyLength,
+        this.config.geohashUnsignedLongs
       );
       const putItemInput = putPointInput.PutItemInput;
 
@@ -200,7 +203,8 @@ export class DynamoDBManager {
     const geohash = S2Manager.generateGeohash(updatePointInput.GeoPoint);
     const hashKey = S2Manager.generateHashKey(
       geohash,
-      this.config.hashKeyLength
+      this.config.hashKeyLength,
+      this.config.geohashUnsignedLongs
     );
 
     updatePointInput.UpdateItemInput.TableName = this.config.tableName;
@@ -234,7 +238,8 @@ export class DynamoDBManager {
     const geohash = S2Manager.generateGeohash(deletePointInput.GeoPoint);
     const hashKey = S2Manager.generateHashKey(
       geohash,
-      this.config.hashKeyLength
+      this.config.hashKeyLength,
+      this.config.geohashUnsignedLongs
     );
 
     return this.config.dynamoDBClient.deleteItem({

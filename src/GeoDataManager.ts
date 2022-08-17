@@ -198,7 +198,7 @@ export class GeoDataManager {
       new this.config.S2RegionCoverer()
         .getCoveringCells(latLngRect)
         .map((cell) => {
-          cell.id.unsigned = true;
+          cell.id.unsigned = this.config.geohashUnsignedLongs;
           return cell;
         })
     );
@@ -320,11 +320,15 @@ export class GeoDataManager {
     geoQueryInput: GeoQueryInput
   ) {
     const promises = covering
-      .getGeoHashRanges(this.config.hashKeyLength)
+      .getGeoHashRanges(
+        this.config.hashKeyLength,
+        this.config.geohashUnsignedLongs
+      )
       .map((range) => {
         const hashKey = S2Manager.generateHashKey(
           range.rangeMin,
-          this.config.hashKeyLength
+          this.config.hashKeyLength,
+          this.config.geohashUnsignedLongs
         );
         return this.dynamoDBManager.queryGeohash(
           geoQueryInput.QueryInput,

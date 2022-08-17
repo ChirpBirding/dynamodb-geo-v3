@@ -31,6 +31,7 @@ export class GeoDataManagerConfiguration {
   geoJsonReadCommaSeparated: boolean = false;
 
   geohashIndexName: string = "geohash-index";
+  geohashUnsignedLongs: boolean = false;
 
   hashKeyLength: number = 2;
 

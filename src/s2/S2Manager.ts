@@ -22,11 +22,16 @@ export class S2Manager {
     const latLng = S2LatLng.fromDegrees(geoPoint.latitude, geoPoint.longitude);
     const cell = S2Cell.fromLatLng(latLng);
     const cellId = cell.id;
-    cellId.id.unsigned = true;
     return cellId.id;
   }
 
-  public static generateHashKey(geohash: Long, hashKeyLength: number) {
+  public static generateHashKey(
+    geohash: Long,
+    hashKeyLength: number,
+    unsignedLongs: boolean
+  ) {
+    geohash.unsigned = unsignedLongs;
+
     if (geohash.lessThan(0)) {
       // Counteract "-" at beginning of geohash.
       hashKeyLength++;
