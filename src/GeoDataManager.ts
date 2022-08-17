@@ -195,7 +195,12 @@ export class GeoDataManager {
       S2Util.latLngRectFromQueryRectangleInput(queryRectangleInput);
 
     const covering = new Covering(
-      new this.config.S2RegionCoverer().getCoveringCells(latLngRect)
+      new this.config.S2RegionCoverer()
+        .getCoveringCells(latLngRect)
+        .map((cell) => {
+          cell.id.unsigned = true;
+          return cell;
+        })
     );
 
     const results = await this.dispatchQueries(covering, queryRectangleInput);
@@ -229,7 +234,12 @@ export class GeoDataManager {
       S2Util.getBoundingLatLngRectFromQueryRadiusInput(queryRadiusInput);
 
     const covering = new Covering(
-      new this.config.S2RegionCoverer().getCoveringCells(latLngRect)
+      new this.config.S2RegionCoverer()
+        .getCoveringCells(latLngRect)
+        .map((cell) => {
+          cell.id.unsigned = true;
+          return cell;
+        })
     );
 
     const results = await this.dispatchQueries(covering, queryRadiusInput);
